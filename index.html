@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Shooter - Battle Arena</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a0033 0%, #2d0052 100%);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        #gameContainer {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            background: linear-gradient(to bottom, #0a0015, #1a0033);
+            border: 4px solid #ff6b9d;
+            box-shadow: 0 0 30px #ff6b9d, 0 0 60px #c21e56;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+
+        #hud {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff88;
+            padding: 15px;
+            color: #00ff88;
+            font-size: 16px;
+            z-index: 100;
+            min-width: 200px;
+        }
+
+        .hud-item {
+            margin: 8px 0;
+            font-weight: bold;
+        }
+
+        .hud-label {
+            color: #888;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        #gameOverScreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 200;
+            text-align: center;
+        }
+
+        #gameOverScreen.active {
+            display: flex;
+        }
+
+        .game-over-text {
+            color: #ff6b9d;
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #ff6b9d;
+        }
+
+        .final-score {
+            color: #00ff88;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .restart-btn {
+            background: linear-gradient(135deg, #ff6b9d, #c21e56);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px #ff6b9d;
+        }
+
+        .restart-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px #ff6b9d;
+        }
+
+        #waveInfo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ffaa00;
+            padding: 10px 15px;
+            color: #ffaa00;
+            font-size: 14px;
+            z-index: 100;
+        }
+
+        #instructions {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #666;
+            padding: 10px 15px;
+            color: #aaa;
+            font-size: 12px;
+            text-align: center;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        
+        <div id="hud">
+            <div class="hud-item">
+                <div class="hud-label">Health</div>
+                <div id="healthValue">100</div>
+            </div>
+            <div class="hud-item">
+                <div class="hud-label">Score</div>
+                <div id="scoreValue">0</div>
+            </div>
+            <div class="hud-item">
+                <div class="hud-label">Mana</div>
+                <div id="manaValue">100</div>
+            </div>
+        </div>
+
+        <div id="waveInfo">
+            <div>Wave: <span id="waveNumber">1</span></div>
+            <div>Enemies: <span id="enemyCount">0</span></div>
+        </div>
+
+        <div id="gameOverScreen">
+            <div class="game-over-text" id="gameOverText">GAME OVER</div>
+            <div class="final-score" id="finalScore">Score: 0</div>
+            <button class="restart-btn" onclick="location.reload()">Play Again</button>
+        </div>
+
+        <div id="instructions">
+            ARROW KEYS: Move | SPACE: Shoot Fireball | SHIFT: Dodge | ESC: Pause
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
