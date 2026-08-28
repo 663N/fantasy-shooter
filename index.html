@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fantasy Shooter - Battle Arena</title>
+    <title>Fantasy Shooter - 10 Level Campaign</title>
     <style>
         * {
             margin: 0;
@@ -62,6 +62,33 @@
             text-transform: uppercase;
         }
 
+        #levelDisplay {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #ff6b9d;
+            padding: 10px 20px;
+            color: #ff6b9d;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 100;
+            text-shadow: 0 0 10px #ff6b9d;
+        }
+
+        #waveInfo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ffaa00;
+            padding: 10px 15px;
+            color: #ffaa00;
+            font-size: 14px;
+            z-index: 100;
+        }
+
         #gameOverScreen {
             position: absolute;
             top: 0;
@@ -93,6 +120,7 @@
             color: #00ff88;
             font-size: 32px;
             margin-bottom: 30px;
+            white-space: pre-line;
         }
 
         .restart-btn {
@@ -110,18 +138,6 @@
         .restart-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 0 40px #ff6b9d;
-        }
-
-        #waveInfo {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 2px solid #ffaa00;
-            padding: 10px 15px;
-            color: #ffaa00;
-            font-size: 14px;
-            z-index: 100;
         }
 
         #instructions {
@@ -146,7 +162,7 @@
         <div id="hud">
             <div class="hud-item">
                 <div class="hud-label">Health</div>
-                <div id="healthValue">100</div>
+                <div id="healthValue">150</div>
             </div>
             <div class="hud-item">
                 <div class="hud-label">Score</div>
@@ -154,8 +170,12 @@
             </div>
             <div class="hud-item">
                 <div class="hud-label">Mana</div>
-                <div id="manaValue">100</div>
+                <div id="manaValue">150</div>
             </div>
+        </div>
+
+        <div id="levelDisplay">
+            Level 1: Castle Grounds
         </div>
 
         <div id="waveInfo">
